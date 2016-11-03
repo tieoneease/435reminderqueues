@@ -14,21 +14,6 @@ let witrequest = axios.create({
   },
 });
 
-//let fuck = () => {
-  //let message = 'prototype v1 due nov 9';
-  //let params = {
-    //q: message
-  //}
-  //witrequest.get(WIT_URL, {params}).then(response => {
-    //console.log(JSON.stringify(response.data.entities, null, 2));
-    //let datetime = response.data.entities.datetime[0].value;
-    //let reminder = response.data.entities.reminder[0].value;
-  //}).catch(err => {
-    //console.log('ERR: ', err);
-  //});
-//}
-//fuck();
-
 module.exports.schedule = (event, context) => {
   const cb = (err, data) => {
     if (err) {
@@ -120,17 +105,6 @@ module.exports.delete = function(event, context) {
   }
   dynamo.delete(payload, cb);
 }
-
-module.exports.remind = (event, context, cb) => {
-  let webhookURL = '';
-  var message1 = {
-    'text': 'Hey <!everyone>! It\'s time for our weekly meeting!',
-    "username": "MeetingTaco",
-    "icon_emoji": ":taco:",
-    "link_names": 1
-  }
-  return axios.post(webhookURL, message1);
-};
 
 let messageBack = (messageText) => {
   let webhookURL = '';
